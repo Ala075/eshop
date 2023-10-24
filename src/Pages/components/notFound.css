@@ -1,0 +1,14 @@
+.empty{
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.empty-action{
+    padding: 7px;
+    background-color: #00abff;
+    cursor: pointer;
+}

@@ -1,0 +1,153 @@
+{
+  "Product": [
+    {
+      "id": 0,
+      "name": "iPhone 15",
+      "category": "Smartphone",
+      "src": "slm",
+      "header": "Apple Collection",
+      "prix": 950,
+      "rate": 4,
+      "color": [
+        "white",
+        "blue",
+        "red"
+      ],
+      "solde": 20,
+      "taille": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Smart clock",
+      "category": "Smartwatch",
+      "src": "slm",
+      "header": "Apple Collection",
+      "prix": 250,
+      "rate": 3,
+      "color": [
+        "white",
+        "black",
+        "pink"
+      ],
+      "solde": 10,
+      "taille": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "iPhone 15",
+      "category": "Smartphone",
+      "src": "slm",
+      "header": "Apple Collection",
+      "prix": 950,
+      "rate": 5,
+      "color": [
+        "white",
+        "blue",
+        "red"
+      ],
+      "solde": 20,
+      "taille": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Smart clock",
+      "category": "Smartwatch",
+      "src": "slm",
+      "header": "Apple Collection",
+      "prix": 250,
+      "rate": 2,
+      "color": [
+        "white",
+        "black",
+        "pink"
+      ],
+      "solde": 10,
+      "taille": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Smart clock",
+      "category": "Smartwatch",
+      "src": "slm",
+      "header": "Apple Collection",
+      "prix": 250,
+      "rate": 4,
+      "color": [
+        "white",
+        "black",
+        "pink"
+      ],
+      "solde": 10,
+      "taille": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "title": "test product",
+      "price": 13.5,
+      "description": "lorem ipsum set",
+      "image": "https://i.pravatar.cc",
+      "category": "electronic",
+      "id": 5
+    },
+    {
+      "title": "test product",
+      "price": 13.5,
+      "description": "lorem ipsum set",
+      "image": "https://i.pravatar.cc",
+      "category": "electronic",
+      "id": 6
+    }
+  ],
+  "Users": [
+    {
+      "naame": "Ala Arfaoui ",
+      "password": "12345678",
+      "email": "amannai788@gmail.com",
+      "id": 1
+    },
+    {
+      "naame": "Wajih Jabri",
+      "password": "12345678",
+      "email": "jabriwaji2000h18@outlook.fr",
+      "id": 2
+    },
+    {
+      "naame": "",
+      "password": "",
+      "email": "",
+      "id": 3
+    },
+    {
+      "naame": "",
+      "password": "",
+      "email": "",
+      "id": 4
+    }
+  ],
+  "Washlist": [],
+  "Cartlist": []
+}

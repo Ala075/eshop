@@ -1,0 +1,58 @@
+/* Ajoutez ce style à votre fichier about.css */
+
+/* Titre de la page */
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Paragraphe principal */
+p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
+}
+
+/* Image */
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Section de l'équipe */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+/* Membre de l'équipe */
+.member {
+    width: 300px;
+    margin: 1.5rem;
+    text-align: center;
+}
+
+/* Image du membre de l'équipe */
+.member img {
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Nom du membre de l'équipe */
+.member h3 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Description du membre de l'équipe */
+.member p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.3;
+}

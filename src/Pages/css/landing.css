@@ -1,0 +1,393 @@
+.landing {
+  padding: 0;
+  /* background: url(./asserts/undraw_thought_process_re_om58.svg);
+    background-repeat: no-repeat;
+    background-position:right center;
+    background-size: contain;
+    background-attachment: fixed; */
+}
+.landing .container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 110px;
+}
+.landing .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.landing .filter {
+  width: 22%;
+  height: 330px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-right: 10px;
+  border-right: 1px solid #889;
+  padding-top: 10px;
+  justify-content: space-between;
+}
+.landing .filter .a {
+  padding: 5px 0px;
+  color: #000;
+}
+.landing .recommand {
+  width: 75%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px 0px 10px;
+  position: relative;
+}
+@media (max-width: 767px) {
+  .landing .filter {
+    width: 90%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+}
+.landing .content h2 {
+  color: var(--mainColor);
+  line-height: 2;
+  letter-spacing: 1px;
+}
+.landing .recommand .box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+  background-color: black;
+  cursor: grab;
+}
+.landing .recommand .box .text {
+  width: 30%;
+  color: white;
+}
+.landing .recommand .box .text p {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.landing .recommand .box .text i {
+  font-size: 1.1rem;
+}
+.landing .recommand .box .img {
+  width: 30%;
+}
+.landing .recommand .box .img img {
+  width: 100%;
+}
+.landing .recommand .circle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  z-index: 5;
+}
+
+.landing .recommand .circle span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  margin-inline: 2px;
+}
+.landing .recommand .circle span.active {
+  border: 1px solid var(--mainColor);
+  width: 15px;
+  height: 15px;
+}
+.landing .down-arrow {
+  position: fixed;
+  bottom: 3.5rem;
+  right: 4%;
+  animation: click_me 0.6s 3s alternate infinite;
+  z-index: 1000;
+}
+@keyframes click_me {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translateY(8px);
+  }
+}
+.landing .down-arrow i {
+  color: white;
+  background-color: black;
+  font-size: 25px;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: all ease 0.55s;
+  padding: 10px;
+}
+.landing .down-arrow i:hover {
+  background-color: var(--mainColor);
+  transform: translateY(5px);
+}
+
+.today,
+.month {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.today .content,
+.month .content {
+  display: grid;
+  grid-auto-flow: column;
+  scroll-behavior: auto;
+  gap: 1.2rem;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  margin-block: 15px;
+}
+.today .content::-webkit-scrollbar,
+.month .content::-webkit-scrollbar {
+  display: none;
+}
+.today .btn {
+  width: 100%;
+  text-align: center;
+  margin-block: 10px;
+}
+.today .btn button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  height: 40px;
+  background-color: var(--mainColor);
+  color: white;
+}
+.today .btn button:hover,
+.month button:hover {
+  background-color: white;
+  border: 1px solid var(--mainColor);
+  color: #000;
+}
+.categorie {
+  width: 100%;
+  height: 45vh;
+  border-block: 1px solid gray;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-block: 20px;
+}
+.categorie .head_section {
+  margin-block: 0px;
+}
+.categorie .header_categorie .btn {
+  width: 10%;
+  height: 30px;
+}
+.categorie .header_categorie .btn span {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #a8a2a2;
+}
+.categorie .boxs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overscroll-behavior-inline: contain;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  gap: 1.2rem;
+}
+.categorie .boxs::-webkit-scrollbar {
+  display: none;
+}
+.categorie .boxs .box {
+  width: 20%;
+  scroll-snap-align: start;
+}
+.categorie .boxs .box .a.active{
+    border:5px solid red;
+    transform: scale(1);
+    border-radius: 5px;
+}
+.categorie .boxs .box .a.active:not(.active){
+    transform: scale(.8);
+}
+.categorie .boxs .box .a{
+  padding: 34px;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+.categorie .boxs .box .a i {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+.categorie .boxs .box .a span {
+  color: black;
+}
+.month .header_month,
+.categorie .header_categorie {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.month button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+  height: 45px;
+  background-color: var(--mainColor);
+  color: white;
+}
+.sectionAds {
+  width: 100%;
+  height: 50vh;
+  border-radius: 10px;
+  background-color: black;
+}
+
+.sectionAds .box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+.sectionAds .box .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35%;
+  height: 80%;
+}
+.sectionAds .box .text p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+.sectionAds .box .text > span {
+  color: rgb(22, 194, 108);
+}
+.sectionAds .box .text .time {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.sectionAds .box .text .time > span {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+}
+.sectionAds .box .text .time span span {
+  color: #000;
+}
+.sectionAds .box .text button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+  height: 45px;
+  background-color: rgb(22, 194, 108);
+  color: white;
+}
+.sectionAds .box .text button:hover {
+  background-color: white;
+  border: 2px solid rgb(22, 194, 108);
+  color: #000;
+}
+.sectionAds .box .img {
+  width: 48%;
+  height: 80%;
+}
+.sectionAds .box .img img {
+  width: 100%;
+  height: 100%;
+}
+.featured {
+  flex-direction: column;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100%;
+  height: 70vh;
+  margin-block: 20px;
+}
+.featured .grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 7px;
+  height: 80%;
+}
+.featured .grid .boxs {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 7px;
+}
+.featured .grid .boxs .grid {
+  height: 100%;
+}
+.featured .grid .box {
+  padding: 25px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  position: relative;
+  border-radius: 10px;
+}
+.featured .grid .box .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: normal;
+  width: 50%;
+  z-index: 2;
+}
+.featured .grid .box .text p {
+  margin-block: 5px;
+}
+
+.featured .box .img {
+  width: 48%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(-70%, -50%);
+  z-index: 1;
+}
+.featured .box .img img {
+  width: 100%;
+  height: 100%;
+}

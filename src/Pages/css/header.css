@@ -1,0 +1,197 @@
+* {
+  user-select: none;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+.header{
+    position:fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;   
+    background-color: white;
+    border-bottom: 1px solid #889;
+}
+.header.color{
+    background-color: var(--primaryColor1);
+    transition: all .3s linear;
+}
+.header .background-overlay {
+  position: absolute;
+  height:100vmax;
+  width: 100%;
+  background-color:black;
+  clip-path: circle(0% at 86.1% 3.2%);
+  transition: clip-path 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+body.color .header .background-overlay {
+  clip-path: circle(141% at 50% 50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+.ads{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5%;
+    height: 40px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 13px;
+}
+.ads select{
+    padding: 5px 8px;
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.ads i{cursor: pointer;}
+.logo{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    color: var(--mainColor);
+    cursor: pointer;
+    font-size: 1rem;
+}
+.header ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 38%;
+}
+.header ul .a{
+    color: black;
+    transition: all .3s;
+}
+.header ul .active .a{
+    color: var(--mainColor);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.header ul li .a:hover{
+    color: var(--mainColor);
+}
+.header .menu,.header .close{
+    display: none;
+}
+@media (max-width:767px){   
+    .header .close,.header .menu{
+       display: block;
+       cursor: pointer;
+       color: white;
+       font-size: 22px;
+       display: flex;
+       justify-content: center;
+    }
+    .header .close{       
+       z-index: 1001;  
+       font-size: 28px;
+    }
+    .header ul{
+        display: flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        position: fixed;
+        z-index: 1001;
+        top: 0;
+        left: 0;
+        background-color:rgb(0,0,0,95%);
+        width: 100vw;
+        height:100vh;
+        transition: .3s;   
+        transform: translate(0%,-100%);
+    }
+    .header .open{
+        transform: translate(0);
+        animation: circle .7s linear;
+    }
+    .header ul li{
+        padding: 30px;
+        transition: .3s;
+    }
+    .header ul .active{   
+        background-color: transparent;
+    }
+    .header ul.open .close{
+        position: absolute;
+        top: 17px;
+        left: 90%;
+    }
+    .others #darkmode{
+        display: block;
+    }
+    .header ul.open + .others #darkmode{
+        z-index: 1001; 
+        position: absolute;
+        display: block;
+        top: 17px;
+        right: 90%;               
+        transition: all .3s linear;
+    }
+}
+@keyframes circle {
+        0%{
+            clip-path: circle(100px at 90% -10%);
+        }
+        50%{
+            clip-path:circle(500px at 90% -10%) ;
+        }
+        100%{
+            clip-path:circle(1000px at 90% -10%) ;
+        }
+} 
+.others{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:42%;
+    color: black;
+}
+.others i{
+    cursor: pointer;
+}
+.others .searchBar{
+    position: relative;
+    width:70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: #d3d3d3d3;
+    padding: 8px;
+    border-radius: 3px;
+}
+.others .searchBar input{
+    padding-right:8px;
+    width: 98%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+}
+.others .searchBar .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.others .iconNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:25%;
+}
+.others .iconNav i{
+    font-size: 1.2rem;
+}
+
