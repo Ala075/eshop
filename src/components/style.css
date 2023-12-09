@@ -213,7 +213,7 @@
 .login form button:hover{
     background-color: var(--primaryColor1);
     border: 1px solid var(--primaryColor1);
-    color: #white;
+    color: white;
 }
 .login form button:disabled {
   cursor: not-allowed;

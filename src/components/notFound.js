@@ -19,7 +19,7 @@ function NotFound(){
                       Take me home
                   </Link>
               </div>
-          <></div>
+          </div>
 
        </>
     );

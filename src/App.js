@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "./Pages/header";
 import Landing from "./Pages/landing";
-import Sign from "./Pages/auth/sign";
-import Login from "./Pages/auth/login";
+import Sign from "./auth/sign";
+import Login from "./auth/login";
 import Footer from "./Pages/footer";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import Cart from './Pages/cart';
+import CartTwo from './Pages/cartTwo';
 import About from "./Pages/about";
 import Contact from './Pages/contact';
 import Washlist from './Pages/washlist';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/About" element={<About/>} />
           <Route path="/Cart" element={<Cart/>} />
           <Route path="/Washlist" element={<Washlist/>} />
+          <Route path="/CartTwo" element={<CartTwo/>}/>
           <Route path="/Contact" element={<Contact/>} />
         </Routes>
         <Footer />

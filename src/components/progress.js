@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./progress.css"; // Make sure to adjust the import path for your CSS
 
 function Progress(props) {

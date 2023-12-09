@@ -1,16 +1,15 @@
-import "./css/landing.css";
-import img2 from "./asserts/iphone.png";
-import Card from "./components/card";
-import Loding from "./components/loding";
+import img2 from "../asserts/iphone.png";
+import Card from "../components/card";
+import Loding from "../components/loding";
 import { Link } from "react-router-dom";
 import useGFetch from "./useGFetch";
-import Filter from "./components/filter";
-import Services from './components/services';
+import Filter from "../components/filter";
+import Services from '../components/services';
 import {useState,useEffect} from "react";
 
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
-import CardSkeleton from "./components/cardSkeleton";
+import CardSkeleton from "../components/cardSkeleton";
 
 function Landing() {
 
@@ -83,10 +82,12 @@ function Landing() {
                     />
                   );
                 })}
-                <CardSkeleton cards={3}/>
             </div>
+            
             <div className="btn">
-              <button>View All Products</button>
+              <button>
+                  View All Products
+              </button>
             </div>
           </div>
 
@@ -102,12 +103,12 @@ function Landing() {
             </div>
             <div className="content">
               {error && <div style={{ color: "red" }}>{error}</div>}
-              {isSubmit &&
-                <div>
-                  <Skeleton/>
-                </div>
-              }
-              
+              {!data && isSubmit &&
+  <div>
+    <CardSkeleton cards={3}/>
+  </div>
+}
+
             </div>
           </div>
           <div className="sectionAds">

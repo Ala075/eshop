@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function UsePFetch(url, options = {}) {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,13 +12,13 @@ function UsePFetch(url, options = {}) {
     setData(null);
 
     try {
-      const response = await fetch(url, {
+      const response = await axios(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           ...options.headers,
         },
-        body: JSON.stringify(formData),
+        data: JSON.stringify(formData),
         ...options,
       });
 

@@ -2,42 +2,46 @@ import "../components/style.css";
 import img from "../asserts/arbre.jpg";
 import Progress from "../components/progress";
 import { useState } from "react";
-import UsePFetch from "../usePFetch";
+import axios from "axios";
+import UsePFetch from "../Pages/usePFetch";
 
 function Sign() {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
-  
+  const [otp,setOtp] = useState("Hello");
+
   const [currentStep, setCurrentStep] = useState(1);
   const circles = [1, 2, 3];
 
   const { isLoading, error, data, submitForm } = UsePFetch(
-    "http://localhost:8000/Users",
-    {
-      headers: {
-        // Add any additional headers here if needed
-        "Content-Type": "application/json",
-      },
-    }
-  );
+    "https://api-vs0.vercel.app/signup");
+    
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Create the form data to send
     const formData = {
-      naame: user,
+      name: user,
       password: pwd,
       email: email,
     };
 
     // Call the submitForm function to make the API request
-    (currentStep == circles.length && !error) &&  submitForm(formData);
+    currentStep === circles.length && !error && submitForm(formData);
   };
-  const handleNext = () => {
-    if (currentStep < circles.length) {
-      setCurrentStep(currentStep + 1);
-    }
+  
+  const handleNext = async () => {
+      if (currentStep < circles.length) {
+              const response = await axios("https://api-vs0.vercel.app/OTP", {
+        method: "GET",
+              });
+
+              if (!response.data.ok) {
+              setCurrentStep(currentStep + 1);
+              setOtp(response.data.otp); // Assign the actual OTP value
+              }
+      }
   };
 
   const handlePrev = () => {
@@ -61,8 +65,13 @@ function Sign() {
                   <p>Sign Up</p>
                   <span>Create a new account</span>
                 </div>
-                <Progress currentStep={currentStep}
-setCurrentStep={setCurrentStep} circles={circles} handleNext={handleNext} handlePrev={handlePrev}/>
+                <Progress
+                  currentStep={currentStep}
+                  setCurrentStep={setCurrentStep}
+                  circles={circles}
+                  handleNext={handleNext}
+                  handlePrev={handlePrev}
+                /><p>{otp}</p>
                 <label htmlFor="user">Username</label>
                 <input
                   type="text"
@@ -89,24 +98,29 @@ setCurrentStep={setCurrentStep} circles={circles} handleNext={handleNext} handle
                 />
 
                 <div className="log">
-                  <div className="btns"><button id="prev" onClick={handlePrev} disabled={currentStep === 1}>
+                  <div className="btns">
+                    <button
+                      id="prev"
+                      onClick={handlePrev}
+                      disabled={currentStep === 1}
+                    >
                       <i className="fa-solid fa-reply"></i>
-                  </button>
-                  
-                  <button type="submit" id="next" onClick={handleNext} disabled={isLoading }>
-                  {isLoading ? "Creating account..." : "Create account"}
-                  <svg viewBox="0 0 36 26">
-                      <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
-                      <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
-                  </svg>
-                  </button>
-                </div>
-                   <p>
+                    </button>
+
+                    <button
+                      type="submit"
+                      id="next"
+                      onClick={handleNext}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? "Creating account..." : "Create account"}
+                    </button>
+                  </div>
+                  <p>
                     Already have an account, <span>Sign-In</span>
                   </p>
                   <div className="or">
                     <span>OR</span>
-                    
                   </div>
 
                   <p>

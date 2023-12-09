@@ -1,5 +1,3 @@
-
-import "./css/header.css";
 import {Link,useNavigate} from "react-router-dom";
 import {useState} from "react";
 
@@ -55,6 +53,10 @@ const handleNavigationWash = () => {
   // Use navigate to navigate to a new route
   navigate('/Washlist');
 }
+const handleNavigationProfil = () => {
+  // Use navigate to navigate to a new route
+  navigate('/CartTwo');
+}
 
   return (
       <div className="header">
@@ -91,7 +93,7 @@ const handleNavigationWash = () => {
               <div className="iconNav">
                 <i className="fa-regular fa-heart"onClick={handleNavigationWash}></i>
                 <i className="fa-solid fa-cart-shopping" onClick={handleNavigationCart}></i>
-                <i className="fa-regular fa-user"></i>
+                <i className="fa-regular fa-user" onClick={handleNavigationProfil}></i>
               </div>  
               <div className="menu" onClick={handleMenu}></div>
             </div>
