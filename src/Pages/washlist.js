@@ -1,52 +1,96 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Card from "../components/card";
 
 const WashContainer = styled.div`
+    padding:80px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: space-evenly;
+    flex-direction:column;
 `;
 
-const EmptyWashMessage = styled.p`
-    margin-top: 200px;
+const Content = styled.div`
+    display: flex;
+    flex-direction:column;
+    width:100%;
 `;
 
-function Washlist() {
-    const [Items, setWashItems] = useState(JSON.parse(localStorage.getItem("wash"))  || []);
+const Row = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items:center;
+    padding-block:10px;
+    border-bottom:1px solid gray;
+    
+`;
+
+const ImgContainer = styled.div`
+    height:140px;
+    width:140px;
+`;
+
+const Description = styled.div`
+    display: flex;
+    justify-content:flex-start;
+    align-items: flex-start;
+    flex-direction:column;
+`;
+
+const Img = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+`;
+
+const Message = styled.p`
+    display: flex;
+    justify-content:center;
+    width:100%;
+    margin-top: 100px;
+`;
+
+function Wash() {
+    const [WashItems, setWashItems] = useState(JSON.parse(localStorage.getItem("wash")) || []);
 
     const DeleteProduct = (productId) => {
         setWashItems((prev) => {
             const updatedWashItems = prev.filter(item => item.id !== productId);
-            localStorage.setItem("Wash", JSON.stringify(updatedWashItems));
+            
+            localStorage.setItem("wash", JSON.stringify(updatedWashItems));
+            
             return updatedWashItems;
         });
     };
-
+    
+    
     return (
         <WashContainer>
-            {Items.length > 0 ? (
-                Items.map((p, index) => {
-                    return (
-                    <Card
-                      key={index}
-                      id={p.id}
-                      img={p.img}
-                      prix={p.price}
-                      category={p.category}
-                      name={p.title}
-                      rating={p.rating}
-                    />
-                  );
-                })
-            ) : (
-                <EmptyWashMessage>Washlist Is Already Empty</EmptyWashMessage>
-            )}
-            <button onClick={() => DeleteProduct(3)}>Delete</button>
+            <Message>Wash List</Message>
+            <Content>
+                {WashItems.length > 0 ? 
+                    WashItems.map((p, index) => {
+                        return (  
+                        <Row key={index}>
+                            <ImgContainer>
+                                <Img src={p.img} />
+                            </ImgContainer>
+                            <Description>
+                                <p>{p.title}</p>
+                                <p>{p.price}</p>
+                                <button 
+                              style={
+                                  {outline: "none", border: "none", borderRadius: "5px",  width: "70px", height: "40px", backgroundColor: "var(--mainColor)", color: "white" }}
+                              onClick={() => DeleteProduct(p.id)}
+>
+    Delete
+                            </button>
+                            </Description>
+                        </Row>
+                        );
+                    })
+                    :<Message>Wash Is Already Empty</Message>
+                }
+            </Content>
         </WashContainer>
     );
 }
-
-export default Washlist;
+export default Wash;

@@ -12,13 +12,24 @@ function Card(props) {
     price: props.prix,
     rating: rating,
     id: props.id,
+    Qte:0,
   };
 
   function addToCart() {
-    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  const existingItemIndex = existingCartItems.findIndex((e) => e.id === card.id);
+
+  if (existingItemIndex !== -1) {
+    existingCartItems[existingItemIndex].Qte += 1;
+  } else {
+    card.Qte += 1;
     existingCartItems.push(card);
-    localStorage.setItem("cart", JSON.stringify(existingCartItems));
   }
+  
+  localStorage.setItem("cart", JSON.stringify(existingCartItems));
+}
+
   
   function addToWash() {
     const existingWashItems = JSON.parse(localStorage.getItem("wash")) || [];
