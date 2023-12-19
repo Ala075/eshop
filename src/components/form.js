@@ -17,9 +17,9 @@ function Form(props){
                 <div className="box">
                     
                     <form className="form" id="form1" onSubmit={props.handleSubmit}>
-                        <div className="head_section">
-                    <p>Sign Up</p>
-                    <span>Create a new account</span>
+                        <div className="head_form">
+                            <p>Sign Up</p>
+                            <span>Create a new account</span>
                         </div>
                         <Progress />
                         <label htmlfor={props.id1}>{props.name1}</label>

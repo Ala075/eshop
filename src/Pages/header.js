@@ -53,10 +53,6 @@ const handleNavigationWash = () => {
   // Use navigate to navigate to a new route
   navigate('/Washlist');
 }
-const handleNavigationProfil = () => {
-  // Use navigate to navigate to a new route
-  navigate('/CartTwo');
-}
 
   return (
       <div className="header">
@@ -93,7 +89,7 @@ const handleNavigationProfil = () => {
               <div className="iconNav">
                 <i className="fa-regular fa-heart"onClick={handleNavigationWash}></i>
                 <i className="fa-solid fa-cart-shopping" onClick={handleNavigationCart}></i>
-                <i className="fa-regular fa-user" onClick={handleNavigationProfil}></i>
+                <i className="fa-regular fa-user"></i>
               </div>  
               <div className="menu" onClick={handleMenu}></div>
             </div>

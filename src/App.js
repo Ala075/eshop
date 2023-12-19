@@ -7,7 +7,6 @@ import Footer from "./Pages/footer";
 import { BrowserRouter } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import Cart from './Pages/cart';
-import CartTwo from './Pages/cartTwo';
 import About from "./Pages/about";
 import Contact from './Pages/contact';
 import Washlist from './Pages/washlist';
@@ -16,7 +15,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
   return (
-    <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+    <SkeletonTheme baseColor="#EEE" highlightColor="#525252">
       <BrowserRouter>
         <Header />
         <Routes>
@@ -26,7 +25,6 @@ function App() {
           <Route path="/About" element={<About/>} />
           <Route path="/Cart" element={<Cart/>} />
           <Route path="/Washlist" element={<Washlist/>} />
-          <Route path="/CartTwo" element={<CartTwo/>}/>
           <Route path="/Contact" element={<Contact/>} />
         </Routes>
         <Footer />

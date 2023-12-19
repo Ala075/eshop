@@ -2,9 +2,7 @@
 /*start login page*/
 
 .login{
-    background-color: #cfcfcfeb;
-    height: 50rem;
-    overflow: hidden;
+    margin: 130px 0px 110px;
 }
 .container{
     width: 75%;
@@ -12,18 +10,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden;
+    border-radius: 15px;
     height: 100%;
 }
 .login .content{
     display: flex;
     justify-content: space-between;
-    border-radius: 15px;
     position: relative;
     width: 100%;
-    height: 70%;
+    height: 100%;
     background-color: whitesmoke;
-    overflow: hidden;
 }
 .login .img{
     width: 45%;
@@ -79,13 +75,20 @@
     /*border: 1px solid #ddd;*/
     border-radius: 10px;
     /* backdrop-filter: blur(1px); */
-    padding: 40px 80px ;
+    padding-block: 20px;
 }
 .login #form2{
     display: none;
 }
-.login .form .head_section{
-    margin-bottom: 25px;
+.login .form .head_form{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+.login .form .head_form p{
+    margin-block: 5px;
+    font-size: .9rem;
 }
 .login .form label{
     text-align: left;

@@ -1,138 +1,219 @@
+// Sign.js
+import React, { useState } from "react";
+import axios from "axios";
+import Progress from "../components/progress";
+import StepOne from "./stepOne";
+import StepTwo from "./stepTwo";
+import StepThree from "./stepThree";
+import UsePFetch from "../Pages/usePFetch";
 import "../components/style.css";
 import img from "../asserts/arbre.jpg";
-import Progress from "../components/progress";
-import { useState } from "react";
-import axios from "axios";
-import UsePFetch from "../Pages/usePFetch";
 
-function Sign() {
-  const [user, setUser] = useState("");
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [otp,setOtp] = useState("Hello");
+const Sign = () => {
+    const [user, setUser] = useState("");
+    const [email, setEmail] = useState("");
+    const [pwd, setPwd] = useState("");
+    const [repeatPwd, setRepeatPwd] = useState("");
+    const [otp, setOtp] = useState("");
+    const [currentStep, setCurrentStep] = useState(1);
+    const circles = [1, 2, 3];
 
-  const [currentStep, setCurrentStep] = useState(1);
-  const circles = [1, 2, 3];
+    const { isLoading, submitForm } = UsePFetch(
+        "http://localhost:3001/signup",
+        {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    );
 
-  const { isLoading, error, data, submitForm } = UsePFetch(
-    "https://api-vs0.vercel.app/signup");
-    
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleNext = async () => {
+        // Add additional logic if needed before moving to the next step
 
-    // Create the form data to send
-    const formData = {
-      name: user,
-      password: pwd,
-      email: email,
+        if (currentStep === 1) {
+            // Validate StepOne fields if needed
+            if (!user || !email) {
+                alert("Please fill in all required fields.");
+                return;
+            } else {
+                // If response is successful, move to the next step
+                setCurrentStep(currentStep + 1);
+                return;
+            }
+        } else if (currentStep === 2) {
+            // Validate StepTwo fields if needed
+            if (!pwd || !repeatPwd) {
+                alert("Please fill in all required fields.");
+                return;
+            } else {
+                // Fetch OTP from the API
+                try {
+                    const response = await axios("http://localhost:3001/OTP", {
+                        method: "GET"
+                    });
+
+                    if (!response.data.ok) {
+                        setOtp(response.data.otp); // Assign the actual OTP value
+                    } else {
+                        // Handle API response when 'ok' is false
+                        console.error(
+                            "Failed to fetch OTP:",
+                            response.data.error
+                        );
+                        alert("Failed to fetch OTP. Please try again.");
+                    }
+                } catch (error) {
+                    // Handle API call error
+                    console.error("API call failed:", error.message);
+                    alert("Failed to fetch OTP. Please try again.");
+                }
+
+                // If response is successful, move to the next step
+                setCurrentStep(currentStep + 1);
+                return;
+            }
+        } else if (currentStep === 3) {
+            // Validate StepThree fields if needed
+            if (!otp) {
+                alert("Please enter the OTP.");
+                return;
+            }
+        }
     };
 
-    // Call the submitForm function to make the API request
-    currentStep === circles.length && !error && submitForm(formData);
-  };
-  
-  const handleNext = async () => {
-      if (currentStep < circles.length) {
-              const response = await axios("https://api-vs0.vercel.app/OTP", {
-        method: "GET",
-              });
+    const handlePrev = () => {
+        // Add additional logic if needed before moving to the previous step
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
 
-              if (!response.data.ok) {
-              setCurrentStep(currentStep + 1);
-              setOtp(response.data.otp); // Assign the actual OTP value
-              }
-      }
-  };
+    const handleSubmit = async e => {
+        e.preventDefault();
 
-  const handlePrev = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
+        handleNext();
 
-  return (
-    <>
-      <section className="login">
-        <div className="container">
-          <div className="content">
-            <div className="img">
-              <img src={img} alt="" />
-            </div>
+        // If all steps are validated, create the form data to send
+        const formData = {
+            name: user,
+            password: pwd,
+            email: email,
+            otp: otp
+        };
 
-            <div className="box">
-              <form className="form" id="form1" onSubmit={handleSubmit}>
-                <div className="head_section">
-                  <p>Sign Up</p>
-                  <span>Create a new account</span>
+        try {
+            // Call the submitForm function to make the API request
+            await submitForm(formData);
+
+            // Move to the next step
+            if (currentStep < circles.length) {
+                setCurrentStep(currentStep + 1);
+            }
+        } catch (error) {
+            // Handle API call error (display error message, log, etc.)
+            console.error("API call failed:", error.message);
+            alert("Failed to create an account. Please try again.");
+        }
+    };
+
+    const renderStep = () => {
+        switch (currentStep) {
+            case 1:
+                return (
+                    <StepOne
+                        user={user}
+                        email={email}
+                        setUser={setUser}
+                        setEmail={setEmail}
+                    />
+                );
+            case 2:
+                return (
+                    <StepTwo
+                        pwd={pwd}
+                        repeatPwd={repeatPwd}
+                        setPwd={setPwd}
+                        setRepeatPwd={setRepeatPwd}
+                    />
+                );
+            case 3:
+                return <StepThree otp={otp} setOtp={setOtp} />;
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <>
+            <section className="login">
+                <div className="container">
+                    <div className="content">
+                        <div className="img">
+                            <img src={img} alt="" />
+                        </div>
+
+                        <div className="box">
+                            <form
+                                className="form"
+                                id="form1"
+                                onSubmit={handleSubmit}
+                            >
+                                <div className="head_form">
+                                    <span>Sign Up</span>
+                                    <p>Create a new account</p>
+                                </div>
+                                <Progress
+                                    currentStep={currentStep}
+                                    setCurrentStep={setCurrentStep}
+                                    circles={circles}
+                                    handleNext={handleNext}
+                                    handlePrev={handlePrev}
+                                />
+
+                                {renderStep()}
+
+                                <div className="log">
+                                    <div className="btns">
+                                        <button
+                                            id="prev"
+                                            onClick={handlePrev}
+                                            disabled={currentStep === 1}
+                                        >
+                                            <i className="fa-solid fa-reply"></i>
+                                        </button>
+
+                                        <button
+                                            type="submit"
+                                            id="next"
+                                            disabled={isLoading}
+                                        >
+                                            {isLoading
+                                                ? "Creating account..."
+                                                : currentStep === 3
+                                                ? "Submit"
+                                                : "Next"}
+                                        </button>
+                                    </div>
+                                    <p>
+                                        Already have an account,{" "}
+                                        <span>Sign-In</span>
+                                    </p>
+                                    <div className="or">
+                                        <span>OR</span>
+                                    </div>
+
+                                    <p>
+                                        <i className="fa-brands fa-google"></i>{" "}
+                                        Sign in with Google
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <Progress
-                  currentStep={currentStep}
-                  setCurrentStep={setCurrentStep}
-                  circles={circles}
-                  handleNext={handleNext}
-                  handlePrev={handlePrev}
-                /><p>{otp}</p>
-                <label htmlFor="user">Username</label>
-                <input
-                  type="text"
-                  id="user"
-                  placeholder="Enter a name"
-                  value={user}
-                  onChange={(e) => setUser(e.target.value)}
-                />
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter an email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <label htmlFor="pwd">Password</label>
-                <input
-                  type="password"
-                  id="pwd"
-                  placeholder="Enter a strong password"
-                  value={pwd}
-                  onChange={(e) => setPwd(e.target.value)}
-                />
+            </section>
+        </>
+    );
+};
 
-                <div className="log">
-                  <div className="btns">
-                    <button
-                      id="prev"
-                      onClick={handlePrev}
-                      disabled={currentStep === 1}
-                    >
-                      <i className="fa-solid fa-reply"></i>
-                    </button>
-
-                    <button
-                      type="submit"
-                      id="next"
-                      onClick={handleNext}
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Creating account..." : "Create account"}
-                    </button>
-                  </div>
-                  <p>
-                    Already have an account, <span>Sign-In</span>
-                  </p>
-                  <div className="or">
-                    <span>OR</span>
-                  </div>
-
-                  <p>
-                    <i className="fa-brands fa-google"></i> Sign in with google
-                  </p>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
 export default Sign;

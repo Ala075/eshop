@@ -41,6 +41,8 @@
   width: 100%;
   z-index: 1;
   border: 1px dashed gray;
+  display: flex;
+  align-items: center;
 }
 .progress-bar .indicator {
   position: absolute;
